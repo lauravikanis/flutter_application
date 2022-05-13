@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Walk the Line 2.0',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.grey,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Walk The Line 2.0'),
     );
   }
 }
@@ -61,6 +61,17 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _decrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -93,23 +104,36 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              '',
+            ),
+            Text(
+              'OK, this is how this works!',
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
+            Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+              FloatingActionButton.small(
+                onPressed: _decrementCounter,
+                tooltip: 'Decrement',
+                foregroundColor: Colors.red,
+                child: const Icon(Icons.remove),
+              ),
+              FloatingActionButton.small(
+                onPressed: _incrementCounter,
+                tooltip: 'Increment',
+                foregroundColor: Colors.green,
+                child: const Icon(Icons.add),
+              )
+            ])
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
